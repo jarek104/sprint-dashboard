@@ -6,19 +6,24 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { MaterialModule } from './shared/material.module';
 import { SharedModule } from './shared/shared.module';
+import { RepoTileComponent } from './repo-tile/repo-tile.component';
+import { ConfigurationService } from './services/configuration.service';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    RepoTileComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     MaterialModule,
-    SharedModule
+    SharedModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [ConfigurationService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
