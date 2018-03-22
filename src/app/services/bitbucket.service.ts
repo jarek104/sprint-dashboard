@@ -23,7 +23,15 @@ export class BitbucketService {
           'Authorization': 'Bearer OTcwNjg2MTc2NTgyOuq3woQgGixAQ2LRYX7ZSzCFsD3K'
         })
       };
-    return this._http.get<any>(`rest/api/1.0/projects/${repo.project}/repos/${repo.name}/pull-requests`, httpOptions);
+    return this._http.get<any>(`rest/api/1.0/projects/${repo.project}/repos/${repo.name}/pull-requests`, httpOptions).pipe(
+      map(res => {
+
+        const myValues = res.values.map(
+          resp =>  resp = resp.id
+        );
+        return myValues;
+      })
+    );
   }
 }
-
+//
