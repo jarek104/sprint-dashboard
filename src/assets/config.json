@@ -1,9 +1,15 @@
 [
   {
-    "repoNames": {
-      "1": "experience",
-      "2": "quick-access-viewer",
-      "3": "ng-training"
-    }
+    "name": "experience",
+    "project": "CSP"
+  },
+  {
+    "name": "quick-access-viewer",
+    "project": "OB"
+  },
+  {
+    "name": "ngweb-training",
+    "project": "OB"
   }
 ]
+

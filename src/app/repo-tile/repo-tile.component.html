@@ -1,4 +1,3 @@
-<p>
-  repo works!
-</p>
-{{repoName}}
+{{repo?.name}} : {{size}}
+  <pre>{{pullRequests | async | json}}</pre>
+

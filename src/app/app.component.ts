@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ConfigurationService } from './services/configuration.service';
-import { IRepo } from './models/repo';
+import { Repo } from './models/repo';
 
 @Component({
   selector: 'sd-root',
@@ -8,25 +8,24 @@ import { IRepo } from './models/repo';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
-  title = 'sd';
-  topLeft: IRepo;
-  topRight: IRepo;
-  topMiddle: string;
+  topLeft: Repo;
+  topRight: Repo;
+  topMiddle: Repo;
 
-  bottomLeft: IRepo;
-  bottomRight: IRepo;
+  bottomLeft: Repo;
+  bottomRight: Repo;
 
-  repos: IRepo[] = [];
-
-  constructor(private config: ConfigurationService) {
+  constructor(private _config: ConfigurationService) {
 
   }
 
   ngOnInit(): void {
-    this.config.getConfiguration()
-      .subscribe(myRepo => {
-          this.repos = myRepo;
-          console.log(myRepo);
+    this._config.getConfiguration()
+      .subscribe(repos => {
+          this.topMiddle = repos[0];
+          this.bottomLeft = repos[1];
+          this.bottomRight = repos[2];
+          console.log(this.topMiddle.name);
       },
           error => console.log(error));
   }

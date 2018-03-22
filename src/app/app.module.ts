@@ -9,6 +9,7 @@ import { SharedModule } from './shared/shared.module';
 import { RepoTileComponent } from './repo-tile/repo-tile.component';
 import { ConfigurationService } from './services/configuration.service';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { BitbucketService } from './services/bitbucket.service';
 
 
 @NgModule({
@@ -23,7 +24,7 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
     SharedModule,
     HttpClientModule
   ],
-  providers: [ConfigurationService],
+  providers: [ConfigurationService, BitbucketService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

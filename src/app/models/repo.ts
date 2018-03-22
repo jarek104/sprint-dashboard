@@ -1,3 +1,4 @@
-export interface IRepo {
+export class Repo {
   name: string;
+  project: string;
 }
