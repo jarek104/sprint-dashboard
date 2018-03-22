@@ -15,6 +15,7 @@ export class BitbucketService {
 
   constructor(private _http: HttpClient) { }
 
+  prs: any[];
 
   getPRsFromRepo(repo: Repo): Observable<any> {
     const httpOptions = {
@@ -26,12 +27,20 @@ export class BitbucketService {
     return this._http.get<any>(`rest/api/1.0/projects/${repo.project}/repos/${repo.name}/pull-requests`, httpOptions).pipe(
       map(res => {
 
-        const myValues = res.values.map(
-          resp =>  resp = resp.id
+        const myValues = res.values.map(response => {
+            const rObj = {};
+            rObj[response.id] = response.id;
+            rObj[response.title] = response.title;
+            rObj[response.updatedDate] = response.updatedDate;
+            // rObj[response.mergeResult] = response.mergeResult;
+            return rObj;
+          }
         );
         return myValues;
-      })
+       }
+
+      )
+
     );
   }
 }
-//

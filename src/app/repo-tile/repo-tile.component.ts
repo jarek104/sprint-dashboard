@@ -20,9 +20,6 @@ export class RepoTileComponent implements OnChanges {
   ngOnChanges(): void {
     if (this.repo) {
       this.pullRequests = this._prService.getPRsFromRepo(this.repo);
-      this.pullRequests.subscribe(data =>
-        this.size = data.size
-      );
     }
   }
 
