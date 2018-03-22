@@ -6,18 +6,15 @@ import { Repo } from '../models/repo';
 import { map } from 'rxjs/operators';
 import 'rxjs/add/operator/do';
 import 'rxjs/add/operator/map';
+import { IPullRequest } from '../models/pull-request';
 
 @Injectable()
-export class BitbucketService implements OnInit {
+export class BitbucketService {
 
   BITBUCKET_URL = 'https://bitbucket.hylandqa.net';
 
   constructor(private _http: HttpClient) { }
 
-  response: any;
-  ngOnInit(): void {
-    throw new Error('Method not implemented.');
-  }
 
   getPRsFromRepo(repo: Repo): Observable<any> {
     const httpOptions = {
@@ -29,4 +26,4 @@ export class BitbucketService implements OnInit {
     return this._http.get<any>(`rest/api/1.0/projects/${repo.project}/repos/${repo.name}/pull-requests`, httpOptions);
   }
 }
-//
+

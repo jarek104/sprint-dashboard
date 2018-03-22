@@ -1,21 +1,15 @@
-export interface IPullRequestResponse {
-  size: number;
-  limit: number;
-  isLastPage: boolean;
-  values: IPullRequests[];
-  start: number;
-
+export interface IPullRequest {
+  title: string;
+  state?: string;
+  createdDate?: number;
+  updatedDate?: number;
+  mergeResult?: string;
+  link?: string;
+  status?: string;
 }
-export interface IPullRequests {
-  size: number;
-  limit: number;
-  isLastPage: boolean;
-  values: string[];
-  start: number;
 
+export interface IUser {
+  name: string;
+  displayName?: string;
 }
-// id: string;
-//   title: string;
-//   state: string;
-//   createdDate: number;
-//   updatedDate: number;
+
