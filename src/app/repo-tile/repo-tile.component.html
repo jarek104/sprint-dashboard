@@ -1,7 +1,15 @@
-{{repo?.name}}
-  <pre>{{pullRequests | async | json}}</pre>
-  <!-- <div>
-    {{pullRequest | async}}
-  </div> -->
+Repository name: {{repo?.name}}
+  <!-- <pre>{{pullRequests | async | json}}</pre> -->
+  <div *ngFor="let pr of pullRequests$ | async">
+    <!-- <p>PR ID: {{pr.id}}</p> -->
+    <p>Title: {{pr.title}}</p>
+    <p>Last Update: {{pr.updateDate | date:'short'}}</p>
+    <p># times approved: {{pr.reviewersApproved}}</p>
+    <p>Merge status: {{pr.mergeResult}}</p>
+    <p>URL: {{pr.link}}</p>
+    <!-- <p>Repo: {{pr.repo}}</p>
+    <p>Project: {{pr.project}}</p> -->
+    <sd-commit [pr]="pr"></sd-commit>
+  </div>
 
 

@@ -1,11 +1,13 @@
 export interface IPullRequest {
   id: number;
   title: string;
-  updatedDate?: number;
+  updateDate?: number;
   reviewersApproved?: number;
   mergeResult?: string;
   link: string;
-  lastCommit: ICommit;
+  lastCommitId: string;
+  repo?: string;
+  project?: string;
 }
 
 export interface IUser {
@@ -14,14 +16,14 @@ export interface IUser {
 }
 
 export interface ICommit {
-  id: number;
+  id: string;
+  author: string;
   message: string;
   createdDate?: number;
   createdBy?: IUser;
-  buildStatus: string;
 }
 
 export interface ICommitStatus {
-  id: number;
+  commitId: number;
   status: 'successful' | 'inProgress' | 'failed';
 }

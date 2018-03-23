@@ -1,3 +1,4 @@
-<p>
-  commit works!
-</p>
+
+<div *ngIf="commit$ | async as commit">
+  <p>Last commit by {{commit.author}}: {{commit.message}}</p>
+</div>

@@ -13,14 +13,13 @@ export class RepoTileComponent implements OnChanges {
 
   @Input() repo: Repo;
 
-  pullRequests: Observable<IPullRequest[]>;
-  size: Observable<string>;
+  pullRequests$: Observable<IPullRequest[]>;
 
   constructor(private _prService: BitbucketService) { }
 
   ngOnChanges(): void {
     if (this.repo) {
-      this.pullRequests = this._prService.getPullRequests(this.repo);
+      this.pullRequests$ = this._prService.getPullRequests(this.repo);
     }
   }
 
