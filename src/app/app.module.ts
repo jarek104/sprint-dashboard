@@ -10,12 +10,15 @@ import { RepoTileComponent } from './repo-tile/repo-tile.component';
 import { ConfigurationService } from './services/configuration.service';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { BitbucketService } from './services/bitbucket.service';
+import { CommitService } from './services/commit.service';
+import { CommitComponent } from './commit/commit.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    RepoTileComponent
+    RepoTileComponent,
+    CommitComponent
   ],
   imports: [
     BrowserModule,
@@ -24,7 +27,10 @@ import { BitbucketService } from './services/bitbucket.service';
     SharedModule,
     HttpClientModule
   ],
-  providers: [ConfigurationService, BitbucketService],
+  providers: [
+    ConfigurationService,
+    BitbucketService,
+    CommitService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

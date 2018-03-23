@@ -2,7 +2,7 @@ import { Component, Input, OnChanges } from '@angular/core';
 import { Repo } from '../models/repo';
 import { BitbucketService } from '../services/bitbucket.service';
 import { Observable } from 'rxjs/Observable';
-import { IPullRequest } from '../models/pull-request';
+import { IPullRequest } from '../models/interfaces';
 
 @Component({
   selector: 'sd-repo-tile',
@@ -13,7 +13,7 @@ export class RepoTileComponent implements OnChanges {
 
   @Input() repo: Repo;
 
-  pullRequests: Observable<IPullRequest>;
+  pullRequests: Observable<IPullRequest[]>;
   size: Observable<string>;
 
   constructor(private _prService: BitbucketService) { }

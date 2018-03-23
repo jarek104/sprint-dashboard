@@ -6,7 +6,7 @@ import { Repo } from '../models/repo';
 import { map } from 'rxjs/operators';
 import 'rxjs/add/operator/do';
 import 'rxjs/add/operator/map';
-import { IPullRequest } from '../models/pull-request';
+import { IPullRequest } from '../models/interfaces';
 
 @Injectable()
 export class BitbucketService {
@@ -21,8 +21,9 @@ export class BitbucketService {
     })
   };
 
-  getPullRequests(repo: Repo): Observable<IPullRequest> {
-    return this._http.get<any>(`rest/api/1.0/projects/${repo.project}/repos/${repo.name}/pull-requests`, this.httpOptions).pipe(
+  getPullRequests(repo: Repo): Observable<IPullRequest[]> {
+    return this._http.get<any>
+    (`rest/api/1.0/projects/${repo.project}/repos/${repo.name}/pull-requests?state=merged`, this.httpOptions).pipe(
       map(res => {
         const myValues = res.values.map(response => {
             const rObj = {};
@@ -30,7 +31,7 @@ export class BitbucketService {
             rObj['title'] = response.title;
             rObj['updateDate'] = response.updatedDate;
             rObj['reviewersApproved'] = this.parseReviewers(response.reviewers);
-            rObj['mergeResult'] = response.properties.mergeResult.outcome;
+            // rObj['mergeResult'] = response.properties.mergeResult.outcome || '';
             rObj['link'] = response.links.self[0].href;
             return rObj;
           }
