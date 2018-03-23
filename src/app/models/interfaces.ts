@@ -1,8 +1,8 @@
 export interface IPullRequest {
   id: number;
   title: string;
-  updateDate?: number;
-  reviewersApproved?: number;
+  updateDate: number;
+  isApproved: boolean;
   mergeResult?: string;
   link: string;
   lastCommitId: string;
@@ -23,7 +23,7 @@ export interface ICommit {
   createdBy?: IUser;
 }
 
-export interface ICommitStatus {
-  commitId: number;
-  status: 'successful' | 'inProgress' | 'failed';
+export interface IBuildStatus {
+  commitId?: number;
+  status: 'Successful' | 'In progress' | 'Failed';
 }

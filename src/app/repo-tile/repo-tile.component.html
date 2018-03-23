@@ -4,8 +4,8 @@ Repository name: {{repo?.name}}
     <!-- <p>PR ID: {{pr.id}}</p> -->
     <p>Title: {{pr.title}}</p>
     <p>Last Update: {{pr.updateDate | date:'short'}}</p>
-    <p># times approved: {{pr.reviewersApproved}}</p>
-    <p>Merge status: {{pr.mergeResult}}</p>
+    <p>Approved: {{pr.isApproved}}</p>
+    <p>Merge result: {{pr.mergeResult}}</p>
     <p>URL: {{pr.link}}</p>
     <!-- <p>Repo: {{pr.repo}}</p>
     <p>Project: {{pr.project}}</p> -->

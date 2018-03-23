@@ -5,12 +5,12 @@ import { Repo } from '../models/repo';
 
 import { map } from 'rxjs/operators';
 import 'rxjs/add/operator/do';
+import 'rxjs/add/observable/of';
 import 'rxjs/add/operator/map';
-import { IPullRequest, ICommit } from '../models/interfaces';
+import { IPullRequest, ICommit, IBuildStatus } from '../models/interfaces';
 
 @Injectable()
 export class BitbucketService {
-  BITBUCKET_URL = 'https://bitbucket.hylandqa.net';
 
   constructor(private _http: HttpClient) { }
 
@@ -26,7 +26,7 @@ export class BitbucketService {
     (`rest/api/1.0/projects/${repo.project}/repos/${repo.name}/pull-requests`, this.httpOptions).pipe(
       map(res => {
         const myValues = res.values.map(response => {
-          const reviewersCount = this.parseReviewers(response.reviewers);
+          const approved = this.parseReviewers(response.reviewers);
             return {
               id: response.id,
               title: response.title,
@@ -36,7 +36,7 @@ export class BitbucketService {
               lastCommitId: response.fromRef.latestCommit,
               repo: response.fromRef.repository.slug,
               project: response.fromRef.repository.project.key,
-              reviewersApproved: reviewersCount
+              isApproved: approved
             };
           }
         );
@@ -46,9 +46,9 @@ export class BitbucketService {
     );
   }
 
-  parseReviewers(reviewers: any): number {
+  parseReviewers(reviewers: any): boolean {
     const response = reviewers.filter(revs => revs.approved === true);
-    return response.length;
+    return response.length > 0;
   }
 
   getCommit(pr: IPullRequest): Observable<ICommit> {
@@ -63,6 +63,18 @@ export class BitbucketService {
 
     )
     );
-
+  }
+  getBuildStatus(pr: IPullRequest): Observable<IBuildStatus> {
+    return this._http.get<any>(`rest/build-status/1.0/commits/stats/${pr.lastCommitId}`, this.httpOptions).pipe(
+      map(response => {
+        if (response.successful === 1) {
+          return { status: 'Successful' } as IBuildStatus;
+        } else if (response.inProgress === 1) {
+          return { status: 'In progress' } as IBuildStatus;
+        } else if (response.failed === 1) {
+          return { status: 'Failed' } as IBuildStatus;
+        }
+      })
+    );
   }
 }
