@@ -1,11 +1,12 @@
 export interface IPullRequest {
+  id: number;
   title: string;
-  state?: string;
-  createdDate?: number;
+  // createdDate?: number;
   updatedDate?: number;
+  reviewersApproved?: number;
   mergeResult?: string;
-  link?: string;
-  status?: string;
+  // link?: string;
+  // status?: string;
 }
 
 export interface IUser {

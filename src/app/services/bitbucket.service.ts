@@ -10,29 +10,28 @@ import { IPullRequest } from '../models/pull-request';
 
 @Injectable()
 export class BitbucketService {
-
   BITBUCKET_URL = 'https://bitbucket.hylandqa.net';
 
   constructor(private _http: HttpClient) { }
 
-  prs: any[];
+  httpOptions = {
+    headers: new HttpHeaders({
+      'Content-Type':  'application/json',
+      'Authorization': 'Bearer OTcwNjg2MTc2NTgyOuq3woQgGixAQ2LRYX7ZSzCFsD3K'
+    })
+  };
 
-  getPRsFromRepo(repo: Repo): Observable<any> {
-    const httpOptions = {
-        headers: new HttpHeaders({
-          'Content-Type':  'application/json',
-          'Authorization': 'Bearer OTcwNjg2MTc2NTgyOuq3woQgGixAQ2LRYX7ZSzCFsD3K'
-        })
-      };
-    return this._http.get<any>(`rest/api/1.0/projects/${repo.project}/repos/${repo.name}/pull-requests`, httpOptions).pipe(
+  getPullRequests(repo: Repo): Observable<IPullRequest> {
+    return this._http.get<any>(`rest/api/1.0/projects/${repo.project}/repos/${repo.name}/pull-requests`, this.httpOptions).pipe(
       map(res => {
-
         const myValues = res.values.map(response => {
             const rObj = {};
-            rObj[response.id] = response.id;
-            rObj[response.title] = response.title;
-            rObj[response.updatedDate] = response.updatedDate;
-            // rObj[response.mergeResult] = response.mergeResult;
+            rObj['id'] = response.id;
+            rObj['title'] = response.title;
+            rObj['updateDate'] = response.updatedDate;
+            rObj['reviewersApproved'] = this.parseReviewers(response.reviewers);
+            rObj['mergeResult'] = response.properties.mergeResult.outcome;
+            rObj['link'] = response.links.self[0].href;
             return rObj;
           }
         );
@@ -40,7 +39,18 @@ export class BitbucketService {
        }
 
       )
-
     );
+  }
+
+  parseReviewers(reviewers: any): number {
+    const response = reviewers.filter(revs => revs.approved === true);
+    return response.length;
+  }
+
+  getCommit(commitId: string, repo: Repo): Observable<string> {
+     return this._http.get<any>(`rest/api/1.0/projects/${repo.project}/repos/${repo.name}/pull-requests`, this.httpOptions).pipe(
+      map(response => response = response.message)
+    );
+
   }
 }

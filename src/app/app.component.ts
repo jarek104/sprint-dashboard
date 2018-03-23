@@ -15,9 +15,7 @@ export class AppComponent implements OnInit {
   bottomLeft: Repo;
   bottomRight: Repo;
 
-  constructor(private _config: ConfigurationService) {
-
-  }
+  constructor(private _config: ConfigurationService) {}
 
   ngOnInit(): void {
     this._config.getConfiguration()
@@ -25,7 +23,6 @@ export class AppComponent implements OnInit {
           this.topMiddle = repos[0];
           this.bottomLeft = repos[1];
           this.bottomRight = repos[2];
-          console.log(this.topMiddle.name);
       },
           error => console.log(error));
   }
