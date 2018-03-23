@@ -31,7 +31,7 @@ export class BitbucketService {
               id: response.id,
               title: response.title,
               updateDate: response.updatedDate,
-              mergeResults: response.properties.mergeResult.outcome,
+              mergeResult: response.properties.mergeResult.outcome,
               link: response.links.self[0].href,
               lastCommitId: response.fromRef.latestCommit,
               repo: response.fromRef.repository.slug,
