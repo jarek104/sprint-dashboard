@@ -1,6 +1,6 @@
 import { Component, Input, OnChanges } from '@angular/core';
 import { BitbucketService } from '../services/bitbucket.service';
-import { IPullRequest, IBuildStatus } from '../models/interfaces';
+import { IPullRequest, IBuildInfo } from '../models/interfaces';
 import { ICommit } from '../models/interfaces';
 import { Observable } from 'rxjs/Observable';
 
@@ -13,7 +13,7 @@ export class CommitComponent implements OnChanges {
 
   @Input() pr: IPullRequest;
   commit$: Observable<ICommit>;
-  buildStatus$: Observable<IBuildStatus>;
+  buildStatus$: Observable<IBuildInfo>;
 
   constructor(private _bbService: BitbucketService) { }
 

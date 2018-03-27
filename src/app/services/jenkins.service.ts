@@ -1,13 +1,13 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
-import { Repo } from '../models/repo';
+import { Project } from '../models/project';
 
 import { map } from 'rxjs/operators';
 import 'rxjs/add/observable/throw';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/do';
-import { IBuildStatus } from '../models/interfaces';
+import { IBuildInfo } from '../models/interfaces';
 
 @Injectable()
 export class JenkinsService {
@@ -20,11 +20,20 @@ export class JenkinsService {
       'Authorization': 'Bearer a57cfd524fd558b1f6a9c4113fbed622'
     })
   };
-  getLatestBuildStatus(repo: Repo): Observable<IBuildStatus> {
-    const buildStatus = this._http.get<any>(`job/ngWeb/job/${repo.name}/job/develop/lastBuild/api/json`).pipe(
-      map(results => results.result)
+  getLatestBuildInfo(project: Project): Observable<IBuildInfo> {
+    return this._http.get<any>
+    (`job/${project.jenkinsProject}/job/${project.bitBucketName}/job/${project.jenkinsBranchName}/lastBuild/api/json`)
+    .pipe(map(response => {
+        return {
+          result: response.result,
+          duration: response.duration,
+          building: response.building,
+          timestamp: response.timestamp
+        } as IBuildInfo;
+
+      })
+
     );
-  return buildStatus;
   }
 
 }

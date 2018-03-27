@@ -23,7 +23,10 @@ export interface ICommit {
   createdBy?: IUser;
 }
 
-export interface IBuildStatus {
-  status: 'SUCCESS' | 'PENDING' | 'FAILED';
+export interface IBuildInfo {
+  result: 'SUCCESS' | 'PENDING' | 'FAILED';
+  duration: number;
+  building: boolean;
+  timestamp: number;
 }
 

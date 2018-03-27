@@ -6,7 +6,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { MaterialModule } from './shared/material.module';
 import { SharedModule } from './shared/shared.module';
-import { RepoTileComponent } from './repo-tile/repo-tile.component';
+import { ProjectTileComponent } from './project-tile/project-tile.component';
 import { ConfigurationService } from './services/configuration.service';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { BitbucketService } from './services/bitbucket.service';
@@ -18,7 +18,7 @@ import { JenkinsService } from './services/jenkins.service';
 @NgModule({
   declarations: [
     AppComponent,
-    RepoTileComponent,
+    ProjectTileComponent,
     CommitComponent
   ],
   imports: [
