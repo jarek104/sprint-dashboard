@@ -12,6 +12,7 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { BitbucketService } from './services/bitbucket.service';
 import { CommitService } from './services/commit.service';
 import { CommitComponent } from './commit/commit.component';
+import { JenkinsService } from './services/jenkins.service';
 
 
 @NgModule({
@@ -30,7 +31,8 @@ import { CommitComponent } from './commit/commit.component';
   providers: [
     ConfigurationService,
     BitbucketService,
-    CommitService],
+    CommitService,
+    JenkinsService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

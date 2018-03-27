@@ -1,4 +1,8 @@
-Repository name: {{repo?.name}}
+<div class="container" fxLayout="column" fxLayoutAlign="space-between center">
+  <div class="tile__header">
+    {{repo?.name}}
+    {{buildStatus$ | async}}
+  </div>
   <!-- <pre>{{pullRequests | async | json}}</pre> -->
   <div *ngFor="let pr of pullRequests$ | async">
     <!-- <p>PR ID: {{pr.id}}</p> -->
@@ -11,5 +15,7 @@ Repository name: {{repo?.name}}
     <p>Project: {{pr.project}}</p> -->
     <sd-commit [pr]="pr"></sd-commit>
   </div>
+</div>
+
 
 

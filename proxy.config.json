@@ -4,5 +4,11 @@
      "secure": false,
      "changeOrigin": true,
      "logLevel": "info"
+  },
+  "/job": {
+     "target":  "https://jolewniczak:a57cfd524fd558b1f6a9c4113fbed622@csp.jenkins.hylandqa.net",
+     "secure": false,
+     "changeOrigin": true,
+     "logLevel": "info"
   }
 }

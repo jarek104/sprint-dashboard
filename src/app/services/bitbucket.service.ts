@@ -64,17 +64,17 @@ export class BitbucketService {
     )
     );
   }
-  getBuildStatus(pr: IPullRequest): Observable<IBuildStatus> {
-    return this._http.get<any>(`rest/build-status/1.0/commits/stats/${pr.lastCommitId}`, this.httpOptions).pipe(
-      map(response => {
-        if (response.successful === 1) {
-          return { status: 'Successful' } as IBuildStatus;
-        } else if (response.inProgress === 1) {
-          return { status: 'In progress' } as IBuildStatus;
-        } else if (response.failed === 1) {
-          return { status: 'Failed' } as IBuildStatus;
-        }
-      })
-    );
-  }
+  // getBuildStatus(pr: IPullRequest): Observable<IBuildStatus> {
+  //   return this._http.get<any>(`rest/build-status/1.0/commits/stats/${pr.lastCommitId}`, this.httpOptions).pipe(
+  //     map(response => {
+  //       if (response.successful === 1) {
+  //         return { status: 'SUCCESS' } as IBuildStatus;
+  //       } else if (response.inProgress === 1) {
+  //         return { status: 'In progress' } as IBuildStatus;
+  //       } else if (response.failed === 1) {
+  //         return { status: 'Failed' } as IBuildStatus;
+  //       }
+  //     })
+  //   );
+  // }
 }

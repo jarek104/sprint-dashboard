@@ -24,6 +24,6 @@ export interface ICommit {
 }
 
 export interface IBuildStatus {
-  commitId?: number;
-  status: 'Successful' | 'In progress' | 'Failed';
+  status: 'SUCCESS' | 'PENDING' | 'FAILED';
 }
+

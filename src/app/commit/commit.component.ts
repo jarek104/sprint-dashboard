@@ -20,7 +20,7 @@ export class CommitComponent implements OnChanges {
 
   ngOnChanges(): void {
     this.commit$ = this._bbService.getCommit(this.pr);
-    this.buildStatus$ = this._bbService.getBuildStatus(this.pr);
+    // this.buildStatus$ = this._bbService.getBuildStatus(this.pr);
   }
 
 }
