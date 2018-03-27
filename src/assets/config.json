@@ -1,15 +1,15 @@
 [
   {
-    "bitBucketName": "experience",
-    "bitBucketProject": "CSP",
-    "jenkinsProject": "Experience",
-    "jenkinsBranchName": "feat%252Fci"
-  },
-  {
     "bitBucketName": "quick-access-viewer",
     "bitBucketProject": "OB",
     "jenkinsProject": "ngWeb",
     "jenkinsBranchName": "develop"
+  },
+  {
+    "bitBucketName": "experience",
+    "bitBucketProject": "CSP",
+    "jenkinsProject": "Experience",
+    "jenkinsBranchName": "feat%252Fci"
   },
   {
     "bitBucketName": "ngweb-training",

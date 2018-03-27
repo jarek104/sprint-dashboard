@@ -14,27 +14,36 @@ export class JenkinsService {
 
   constructor(private _http: HttpClient) { }
 
-  httpOptions = {
-    headers: new HttpHeaders({
-      'Content-Type':  'application/json',
-      'Authorization': 'Bearer a57cfd524fd558b1f6a9c4113fbed622'
-    })
-  };
   getLatestBuildInfo(project: Project): Observable<IBuildInfo> {
     return this._http.get<any>
     (`job/${project.jenkinsProject}/job/${project.bitBucketName}/job/${project.jenkinsBranchName}/lastBuild/api/json`)
     .pipe(map(response => {
+      const author = this.getAuthor(response.changeSets);
+      const msg = this.getMessage(response.changeSets);
         return {
           result: response.result,
           duration: response.duration,
           building: response.building,
-          timestamp: response.timestamp
+          timestamp: response.timestamp,
+          commitAuthor: author,
+          commitMessage: msg
         } as IBuildInfo;
 
       })
 
     );
   }
-
+  getAuthor(changeSets: any): any {
+    if (changeSets.length > 0) {
+      console.log(changeSets[0].items[0].author.fullName);
+      return changeSets[0].items[0].author.fullName;
+    } else {return ''; }
+  }
+  getMessage(changeSets: any): any {
+    if (changeSets.length > 0) {
+      console.log(changeSets[0].items[0].msg);
+      return changeSets[0].items[0].msg;
+    } else {return ''; }
+  }
 }
 

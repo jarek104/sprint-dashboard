@@ -1,20 +1,20 @@
-<div class="container" fxLayout="column" fxLayoutAlign="space-between center">
+<div class="container" fxLayout="column"
+     fxLayoutAlign="space-between center"
+     fxFill
+     *ngIf="buildInfo$ | async as buildInfo"
+     [ngClass]="{'background-color__success' : buildInfo.result === 'SUCCESS',
+                 'background-color__failed' : buildInfo.result === 'FAILED',
+                 'background-color__in-progress' : buildInfo.result === 'IN PROGRESS'}">
   <div class="tile__header">
-    {{project?.bitBucketName}}
-    {{buildInfo$ | async | json}}
+    {{project?.bitBucketName | uppercase}}
+
   </div>
-  <!-- <pre>{{pullRequests | async | json}}</pre> -->
-  <!-- <div *ngFor="let pr of pullRequests$ | async">
-    <p>PR ID: {{pr.id}}</p>
-    <p>Title: {{pr.title}}</p>
-    <p>Last Update: {{pr.updateDate | date:'short'}}</p>
-    <p>Approved: {{pr.isApproved}}</p>
-    <p>Merge result: {{pr.mergeResult}}</p>
-    <p>URL: {{pr.link}}</p>
-    <p>Repo: {{pr.repo}}</p>
-    <p>Project: {{pr.project}}</p>
-    <sd-commit [pr]="pr"></sd-commit>
-  </div> -->
+  <div class="tile__content" *ngIf="buildInfo.commitAuthor != ''">
+    <div>{{buildInfo.commitAuthor}}</div>
+    <div>{{buildInfo.commitMessage}}</div>
+  </div>
+  <div class="tile__footer">Last Updated: {{buildInfo?.timestamp | date:'short'}}</div>
+
 </div>
 
 

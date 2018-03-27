@@ -28,5 +28,7 @@ export interface IBuildInfo {
   duration: number;
   building: boolean;
   timestamp: number;
+  commitAuthor: string;
+  commitMessage: string;
 }
 
