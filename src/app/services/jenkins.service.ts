@@ -28,7 +28,8 @@ export class JenkinsService {
           timestamp: response.timestamp,
           buildNumber: response.number,
           commitAuthor: author,
-          commitAuthorAbsoluteURL: authorURL,
+          commitAuthorAbsoluteURL: authorURL.replace('https://csp.jenkins.hylandqa.net/user/',
+          'https://jira.hylandqa.net/secure/useravatar?ownerId=').replace('onbase%5C', ''),
           commitMessage: msg
         } as IBuildInfo;
 

@@ -24,30 +24,10 @@ export class ProjectTileComponent implements OnChanges {
   constructor(private _prService: BitbucketService, private _jenkinsService: JenkinsService) { }
 
   ngOnChanges(): void {
-    this.project.jenkinsBranchDisplayName = decodeURIComponent(decodeURIComponent(this.project.jenkinsBranchName));
     if (this.project) {
+      this.project.jenkinsBranchDisplayName = decodeURIComponent(decodeURIComponent(this.project.jenkinsBranchName));
       this.pullRequests$ = this._prService.getPullRequests(this.project);
-      this.buildInfo$ = this._jenkinsService.getLatestBuildInfo(this.project).pipe(
-        map(buildInfo => {
-          return {
-            ...buildInfo,
-            commitAuthorAbsoluteURL: buildInfo.commitAuthorAbsoluteURL.replace('https://csp.jenkins.hylandqa.net/user/',
-            'https://jira.hylandqa.net/secure/useravatar?ownerId=').replace('onbase%5C', '')
-          };
-        })
-      );
-      this.getUserAvatar();
+      this.buildInfo$ = this._jenkinsService.getLatestBuildInfo(this.project);
     }
   }
-  getUserAvatar() {
-    let url = '';
-
-    this.buildInfo$.map(value => {url = value.commitAuthorAbsoluteURL;
-      console.log('URL: ' + url);
-      url = url.replace('https://csp.jenkins.hylandqa.net/user/',
-        'https://jira.hylandqa.net/secure/useravatar?ownerId=');
-    });
-
-  }
-
 }

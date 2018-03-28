@@ -1,11 +1,27 @@
+$color-red:#F44336;
+$color-green: #4CAF50;
+$color-yellow: #FFEB3B;
+$color-lighter: #fff;
+div {
+  padding-top: 5px;
+}
 .background-color__failed {
-  background: #F44336;
+  background: $color-red;
 }
 .background-color__success {
-  background: #4CAF50;
+  background: $color-green;
 }
 .background-color__in-progress {
-  background: #FFEB3B;
+  background: $color-yellow
+}
+.background-color__failed-lighter {
+  background: lighten( $color-red, 10% )
+}
+.background-color__success-lighter {
+  background: lighten( $color-green, 10% )
+}
+.background-color__in-progress-lighter {
+  background: lighten( $color-yellow, 10% )
 }
 .tile__header {
   text-align: center;
@@ -20,9 +36,18 @@
   text-align: center;
   font-size: 28px;
   font-weight: 500;
+  height: 80px;
+}
+.commit-container {
+  height: 150px;
+}
+.content-container {
+  width: 100%;
 }
 .tile__footer {
   font-weight: 100;
+  font-size: 18px;
+  padding-bottom: 10px
 }
 .avatar {
   vertical-align: middle;
