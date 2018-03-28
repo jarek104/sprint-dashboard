@@ -24,11 +24,13 @@ export interface ICommit {
 }
 
 export interface IBuildInfo {
-  result: 'SUCCESS' | 'PENDING' | 'FAILED';
+  result: 'SUCCESS' | 'PENDING' | 'FAILURE';
   duration: number;
   building: boolean;
   timestamp: number;
+  buildNumber: number;
   commitAuthor: string;
+  commitAuthorAbsoluteURL: string;
   commitMessage: string;
 }
 

@@ -1,20 +1,32 @@
 .background-color__failed {
-  background: #eb383b;
+  background: #F44336;
 }
 .background-color__success {
-  background: #57af53;
+  background: #4CAF50;
 }
 .background-color__in-progress {
-  background: #f9be29;
+  background: #FFEB3B;
 }
 .tile__header {
   text-align: center;
   padding-top: 10px;
+  padding-bottom: 30px;
   font-size: 35px;
+  font-weight: 800;
 }
 .tile__content {
+  padding-top: 10px;
+  padding-bottom: 30px;
   text-align: center;
+  font-size: 28px;
+  font-weight: 500;
 }
 .tile__footer {
   font-weight: 100;
+}
+.avatar {
+  vertical-align: middle;
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
 }

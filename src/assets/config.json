@@ -15,7 +15,7 @@
     "bitBucketName": "ngweb-training",
     "bitBucketProject": "OB",
     "jenkinsProject": "ngWeb",
-    "jenkinsBranchName": "develop"
+    "jenkinsBranchName": "feature%252FCN-38-feat-home-screen"
   }
   ,
   {
@@ -36,7 +36,7 @@
     "bitBucketName": "mars",
     "bitBucketProject": "OB",
     "jenkinsProject": "ngWeb",
-    "jenkinsBranchName": "feature%252Fci"
+    "jenkinsBranchName": "master"
   }
 ]
 

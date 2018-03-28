@@ -1,16 +1,21 @@
 <div class="container" fxLayout="column"
-     fxLayoutAlign="space-between center"
+     fxLayoutAlign="start center"
      fxFill
      *ngIf="buildInfo$ | async as buildInfo"
      [ngClass]="{'background-color__success' : buildInfo.result === 'SUCCESS',
-                 'background-color__failed' : buildInfo.result === 'FAILED',
+                 'background-color__failed' : buildInfo.result === 'FAILURE',
                  'background-color__in-progress' : buildInfo.result === 'IN PROGRESS'}">
   <div class="tile__header">
-    {{project?.bitBucketName | uppercase}}
+    {{project.bitBucketName | uppercase}}
 
   </div>
-  <div class="tile__content" *ngIf="buildInfo.commitAuthor != ''">
-    <div>{{buildInfo.commitAuthor}}</div>
+  <div class="tile__content" fxFlex="1 0 auto">
+    <div>Build #: {{buildInfo.buildNumber}}</div>
+    <div>Branch: {{project.jenkinsBranchDisplayName}}</div>
+  </div>
+  <div class="tile__content" fxFlex="1 0 auto" *ngIf="buildInfo.commitAuthor != ''">
+    <!-- {{buildInfo.commitAuthorAbsoluteURL}} -->
+      <img class="avatar" src={{buildInfo.commitAuthorAbsoluteURL}}/>
     <div>{{buildInfo.commitMessage}}</div>
   </div>
   <div class="tile__footer">Last Updated: {{buildInfo?.timestamp | date:'short'}}</div>
@@ -18,4 +23,4 @@
 </div>
 
 
-
+<!-- fxLayoutAlign="space-between center" -->

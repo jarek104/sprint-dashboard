@@ -11,15 +11,15 @@ import { ConfigurationService } from './services/configuration.service';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { BitbucketService } from './services/bitbucket.service';
 import { CommitService } from './services/commit.service';
-import { CommitComponent } from './commit/commit.component';
 import { JenkinsService } from './services/jenkins.service';
+import { StatsTileComponent } from './stats-tile/stats-tile.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     ProjectTileComponent,
-    CommitComponent
+    StatsTileComponent
   ],
   imports: [
     BrowserModule,

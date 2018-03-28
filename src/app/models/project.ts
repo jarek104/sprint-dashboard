@@ -3,4 +3,5 @@ export class Project {
   bitBucketProject: string;
   jenkinsProject: string;
   jenkinsBranchName: string;
+  jenkinsBranchDisplayName?: string;
 }
