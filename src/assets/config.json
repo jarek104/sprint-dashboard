@@ -9,13 +9,13 @@
     "bitBucketName": "experience",
     "bitBucketProject": "CSP",
     "jenkinsProject": "Experience",
-    "jenkinsBranchName": "feat%252Fci"
+    "jenkinsBranchName": "develop"
   },
   {
     "bitBucketName": "ngweb-training",
     "bitBucketProject": "OB",
     "jenkinsProject": "ngWeb",
-    "jenkinsBranchName": "feature%252FCN-38-feat-home-screen"
+    "jenkinsBranchName": "develop"
   }
   ,
   {

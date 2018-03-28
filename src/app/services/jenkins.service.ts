@@ -18,6 +18,7 @@ export class JenkinsService {
     return this._http.get<any>
     (`job/${project.jenkinsProject}/job/${project.bitBucketName}/job/${project.jenkinsBranchName}/lastBuild/api/json`)
     .pipe(map(response => {
+      const result = this.getResult(response);
       const author = this.getAuthor(response.changeSets);
       const msg = this.getMessage(response.changeSets);
       const authorURL = this.getAuthorUrl(response.changeSets);
@@ -36,6 +37,11 @@ export class JenkinsService {
       })
 
     );
+  }
+  getResult(result: any): any {
+    if (result.result > 0) {
+      return result.result;
+    } else {return ''; }
   }
   getAuthor(changeSets: any): any {
     if (changeSets.length > 0) {
