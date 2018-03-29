@@ -13,13 +13,15 @@ import { BitbucketService } from './services/bitbucket.service';
 import { CommitService } from './services/commit.service';
 import { JenkinsService } from './services/jenkins.service';
 import { StatsTileComponent } from './stats-tile/stats-tile.component';
+import { DurationPipe } from './pipes/duration.pipe';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     ProjectTileComponent,
-    StatsTileComponent
+    StatsTileComponent,
+    DurationPipe
   ],
   imports: [
     BrowserModule,

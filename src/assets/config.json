@@ -19,10 +19,10 @@
   }
   ,
   {
-    "bitBucketName": "web-portal-toolkit",
+    "bitBucketName": "evolution-api-cd",
     "bitBucketProject": "OB",
-    "jenkinsProject": "ngWeb",
-    "jenkinsBranchName": "feat%252Fci"
+    "jenkinsProject": "evolution-api",
+    "jenkinsBranchName": "develop"
   }
   ,
   {
