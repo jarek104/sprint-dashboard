@@ -6,6 +6,9 @@ import { Pipe, PipeTransform } from '@angular/core';
 export class DurationPipe implements PipeTransform {
 
   transform(value: number): string {
+    if (value === 0) {
+      return 'In progress...';
+    }
     const ms = value % 1000;
     value = (value - ms) / 1000;
     const secs = value % 60;

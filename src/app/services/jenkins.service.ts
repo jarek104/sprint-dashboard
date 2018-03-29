@@ -23,7 +23,7 @@ export class JenkinsService {
       const msg = this.getMessage(response.changeSets);
       const authorURL = this.getAuthorUrl(response.changeSets);
         return {
-          result: response.result,
+          result: result,
           duration: response.duration,
           building: response.building,
           timestamp: response.timestamp,
@@ -39,7 +39,8 @@ export class JenkinsService {
     );
   }
   getResult(result: any): any {
-    if (result.result > 0) {
+    if (result.result) {
+      console.log(result.result);
       return result.result;
     } else {return ''; }
   }

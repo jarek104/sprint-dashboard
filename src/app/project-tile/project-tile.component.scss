@@ -25,21 +25,21 @@ div {
 }
 .tile__header {
   text-align: center;
-  padding-top: 10px;
-  padding-bottom: 10px;
+  margin-top: 10px;
+  margin-bottom: 20px;
   font-size: 35px;
   font-weight: 800;
 }
 .tile__content {
-  padding-top: 10px;
-  padding-bottom: 10px;
   text-align: center;
   font-size: 28px;
   font-weight: 300;
-  height: 80px;
+  min-height: 80px;
 }
 .commit-container {
-  height: 150px;
+  min-height: 150px;
+  padding-top: 30px;
+  margin-top: 20px;
 }
 .content-container {
   width: 100%;
