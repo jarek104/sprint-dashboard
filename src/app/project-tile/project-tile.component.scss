@@ -2,9 +2,7 @@ $color-red:#F44336;
 $color-green: #4CAF50;
 $color-yellow: #FFEB3B;
 $color-lighter: #fff;
-div {
-  padding-top: 5px;
-}
+
 .background-color__failed {
   background: $color-red;
 }
@@ -37,9 +35,9 @@ div {
   min-height: 80px;
 }
 .commit-container {
-  min-height: 150px;
-  padding-top: 30px;
-  margin-top: 20px;
+  min-height: 160px;
+  padding-top: 15px;
+  margin-top: 10px;
 }
 .content-container {
   width: 100%;

@@ -18,7 +18,7 @@
           [ngClass]="{'background-color__success-lighter' : buildInfo.result === 'SUCCESS',
                  'background-color__failed-lighter' : buildInfo.result === 'FAILURE',
                  'background-color__in-progress-lighter' : buildInfo.result === ''}">
-        <img class="avatar" src={{buildInfo.commitAuthorAbsoluteURL}}/>
+        <img class="avatar" src={{buildInfo.commitAuthorAvatarURL}}/>
       <div>{{buildInfo.commitMessage}}</div>
     </div></div>
   <div class="tile__footer">Last Updated: {{buildInfo?.timestamp | date:'short'}}</div>
