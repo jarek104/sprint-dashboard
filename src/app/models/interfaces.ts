@@ -30,7 +30,7 @@ export interface IBuildInfo {
   timestamp: number;
   buildNumber: number;
   commitAuthor: string;
-  commitAuthorAbsoluteURL: string;
+  commitAuthorAvatarURL: string;
   commitMessage: string;
 }
 
