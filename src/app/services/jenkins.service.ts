@@ -29,11 +29,7 @@ export class JenkinsService {
           timestamp: response.timestamp,
           buildNumber: response.number,
           commitAuthor: author,
-<<<<<<< HEAD
           commitAuthorAvatarURL: 'https://jira.hylandqa.net/secure/useravatar?ownerId=' + authorName.replace('onbase%5C', ''),
-=======
-          commitAuthorAvatarURL: authorName.replace('onbase%5C', ''),
->>>>>>> 5b991cfa5331c8545c671311deaeaa9041dfae4d
           commitMessage: msg
         } as IBuildInfo;
 
@@ -59,7 +55,6 @@ export class JenkinsService {
   }
   getUsernameFromEmail(changeSets: any): string {
     if (changeSets.length > 0) {
-<<<<<<< HEAD
       const user = changeSets[0].items[0].author.absoluteUrl.replace('https://csp.jenkins.hylandqa.net/user/', '');
 
       if (user.indexOf('.') === -1) {
@@ -71,13 +66,6 @@ export class JenkinsService {
         return nameParts[0][0] + nameParts[1];
       }
     } else { return ''; }
-=======
-      const emailParts = changeSets[0].items[0].authorEmail.split('@');
-      const emailName = emailParts.length === 2 ? emailParts[0] : null;
-      const nameParts = emailName.toLowerCase().split('.');
-      return 'https://jira.hylandqa.net/secure/useravatar?ownerId=' + nameParts[0][0] + nameParts[1];
-    } else {return ''; }
->>>>>>> 5b991cfa5331c8545c671311deaeaa9041dfae4d
   }
 }
 
