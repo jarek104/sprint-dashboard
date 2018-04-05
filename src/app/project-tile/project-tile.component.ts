@@ -6,7 +6,9 @@ import { IPullRequest, IBuildInfo } from '../models/interfaces';
 import { JenkinsService } from '../services/jenkins.service';
 
 import 'rxjs/add/observable/of';
+import 'rxjs/add/operator/startWith';
 import { map } from 'rxjs/operators';
+import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 
 @Component({
   selector: 'sd-project-tile',
@@ -18,7 +20,7 @@ export class ProjectTileComponent implements OnChanges {
   @Input() project: Project;
 
   pullRequests$: Observable<IPullRequest[]>;
-  buildInfo$: Observable<IBuildInfo>;
+  buildInfo$: BehaviorSubject<IBuildInfo> = new BehaviorSubject<IBuildInfo>(undefined);
   userAvatarURL: Observable<string>;
 
   constructor(private _prService: BitbucketService, private _jenkinsService: JenkinsService) { }
@@ -27,8 +29,13 @@ export class ProjectTileComponent implements OnChanges {
     if (this.project) {
       this.project.jenkinsBranchDisplayName = decodeURIComponent(decodeURIComponent(this.project.jenkinsBranchName));
       this.pullRequests$ = this._prService.getPullRequests(this.project);
-      this.buildInfo$ = this._jenkinsService.getLatestBuildInfo(this.project);
-      Observable.interval(10000).subscribe(() => this.buildInfo$ = this._jenkinsService.getLatestBuildInfo(this.project));
+      Observable.interval(10000).startWith(0).subscribe(() => {
+        this._jenkinsService.getLatestBuildInfo(this.project).subscribe((buildInfo => {
+          this.buildInfo$.next(buildInfo);
+        }));
+      });
+      // this.buildInfo$ = this._jenkinsService.getLatestBuildInfo(this.project);
+      // Observable.interval(10000).subscribe(() => this.buildInfo$ = this._jenkinsService.getLatestBuildInfo(this.project));
     }
   }
 }
