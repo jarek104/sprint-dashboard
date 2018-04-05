@@ -4,6 +4,7 @@ import { Observable } from 'rxjs/Observable';
 import { Project } from '../models/project';
 
 import { map } from 'rxjs/operators';
+import 'rxjs/add/observable/interval';
 import 'rxjs/add/observable/throw';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/do';
