@@ -28,7 +28,7 @@ export class ProjectTileComponent implements OnChanges {
       this.project.jenkinsBranchDisplayName = decodeURIComponent(decodeURIComponent(this.project.jenkinsBranchName));
       this.pullRequests$ = this._prService.getPullRequests(this.project);
       this.buildInfo$ = this._jenkinsService.getLatestBuildInfo(this.project);
-      Observable.interval(5000).subscribe(() => this.buildInfo$ = this._jenkinsService.getLatestBuildInfo(this.project));
+      Observable.interval(10000).subscribe(() => this.buildInfo$ = this._jenkinsService.getLatestBuildInfo(this.project));
     }
   }
 }
