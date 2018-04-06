@@ -12,10 +12,16 @@
       <div>Branch: {{project.jenkinsBranchDisplayName}}</div>
     </div>
     <div class="tile__content commit-container"
-          *ngIf="buildInfo.commitAuthor != ''"
+          *ngIf="buildInfo.commitAuthor != ''; else startedManually"
           [ngClass]="getLastPRBackground()">
         <img class="avatar" src={{buildInfo.commitAuthorAvatarURL}}/>
       <div>{{buildInfo.commitMessage}}</div>
-    </div></div>
+    </div>
+    <ng-template #startedManually>
+        <div class="tile__content commit-container commit__started-manually" fxLayout="column" fxLayoutAlign="space-around center" [ngClass]="getLastPRBackground()">
+          <span>Build started manually</span>
+        </div>
+    </ng-template>
+  </div>
   <div class="tile__footer">Last Updated: {{buildInfo?.timestamp | date:'short'}}</div>
 </div>
