@@ -23,6 +23,7 @@ export class ProjectTileComponent implements OnChanges {
   buildInfo$: BehaviorSubject<IBuildInfo> = new BehaviorSubject<IBuildInfo>(undefined);
   userAvatarURL: Observable<string>;
 
+
   constructor(private _prService: BitbucketService, private _jenkinsService: JenkinsService) { }
 
   ngOnChanges(): void {
@@ -34,8 +35,47 @@ export class ProjectTileComponent implements OnChanges {
           this.buildInfo$.next(buildInfo);
         }));
       });
-      // this.buildInfo$ = this._jenkinsService.getLatestBuildInfo(this.project);
-      // Observable.interval(10000).subscribe(() => this.buildInfo$ = this._jenkinsService.getLatestBuildInfo(this.project));
     }
   }
+  getTileBackground() {
+    let tileBackgroundClass = '';
+    this.buildInfo$.subscribe(value => {
+      switch (value.result) {
+        case 'SUCCESS': {
+          tileBackgroundClass = 'background-color__success';
+          break;
+        }
+        case 'FAILURE': {
+          tileBackgroundClass = 'background-color__failed';
+          break;
+        }
+        case undefined: {
+          tileBackgroundClass = 'background-color__in-progress';
+          break;
+        }
+      }
+    });
+    return tileBackgroundClass;
+  }
+  getLastPRBackground() {
+    let tileBackgroundClass = '';
+    this.buildInfo$.subscribe(value => {
+      switch (value.result) {
+        case 'SUCCESS': {
+          tileBackgroundClass = 'background-color__success-lighter';
+          break;
+        }
+        case 'FAILURE': {
+          tileBackgroundClass = 'background-color__failed-lighter';
+          break;
+        }
+        case undefined: {
+          tileBackgroundClass = 'background-color__in-progress-lighter';
+          break;
+        }
+      }
+    });
+    return tileBackgroundClass;
+  }
+
 }

@@ -2,9 +2,7 @@
      fxLayoutAlign="start center"
      fxFill
      *ngIf="buildInfo$ | async as buildInfo"
-     [ngClass]="{'background-color__success' : buildInfo.result === 'SUCCESS',
-                 'background-color__failed' : buildInfo.result === 'FAILURE',
-                 'background-color__in-progress' : buildInfo.result === ''}">
+     [ngClass]="getTileBackground()">
   <div class="tile__header">
     {{project.bitBucketName | uppercase}}
   </div>
@@ -15,9 +13,7 @@
     </div>
     <div class="tile__content commit-container"
           *ngIf="buildInfo.commitAuthor != ''"
-          [ngClass]="{'background-color__success-lighter' : buildInfo.result === 'SUCCESS',
-                 'background-color__failed-lighter' : buildInfo.result === 'FAILURE',
-                 'background-color__in-progress-lighter' : buildInfo.result === ''}">
+          [ngClass]="getLastPRBackground()">
         <img class="avatar" src={{buildInfo.commitAuthorAvatarURL}}/>
       <div>{{buildInfo.commitMessage}}</div>
     </div></div>
