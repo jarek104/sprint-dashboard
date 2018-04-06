@@ -24,7 +24,7 @@ export interface ICommit {
 }
 
 export interface IBuildInfo {
-  result: 'SUCCESS' | undefined | 'FAILURE';
+  result: 'SUCCESS' | undefined | 'FAILURE' | '';
   duration: number;
   building: boolean;
   timestamp: number;

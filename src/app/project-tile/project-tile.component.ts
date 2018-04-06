@@ -49,7 +49,7 @@ export class ProjectTileComponent implements OnChanges {
           tileBackgroundClass = 'background-color__failed';
           break;
         }
-        case undefined: {
+        case '': {
           tileBackgroundClass = 'background-color__in-progress';
           break;
         }
