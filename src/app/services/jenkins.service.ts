@@ -17,7 +17,7 @@ export class JenkinsService {
 
   getLatestBuildInfo(project: Project): Observable<IBuildInfo> {
     return this._http.get<any>
-    (`job/${project.jenkinsProject}/job/${project.bitBucketName}/job/${project.jenkinsBranchName}/lastBuild/api/json`)
+    (`http://qa-021985:3000/job/${project.jenkinsProject}/job/${project.bitBucketName}/job/${project.jenkinsBranchName}/lastBuild/api/json`)
     .pipe(map(response => {
       const result = this.getResult(response);
       const author = this.getAuthor(response.changeSets);
