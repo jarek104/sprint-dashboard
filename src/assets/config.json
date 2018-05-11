@@ -26,17 +26,17 @@
   }
   ,
   {
-    "bitBucketName": "Jira and Pull requests",
-    "bitBucketProject": "OB",
-    "jenkinsProject": "ngWeb",
-    "jenkinsBranchName": "develop"
+    "bitBucketName": "evolution-api-dependencies",
+    "bitBucketProject": "CSP",
+    "jenkinsProject": "evolution-api",
+    "jenkinsBranchName": "Version"
   }
   ,
   {
-    "bitBucketName": "mars",
-    "bitBucketProject": "OB",
-    "jenkinsProject": "ngWeb",
-    "jenkinsBranchName": "master"
+    "bitBucketName": "evolution-idp",
+    "bitBucketProject": "CSP",
+    "jenkinsProject": "Experience",
+    "jenkinsBranchName": "develop"
   }
 ]
 
