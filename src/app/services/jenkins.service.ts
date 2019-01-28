@@ -16,8 +16,36 @@ export class JenkinsService {
   constructor(private _http: HttpClient) { }
 
   getLatestBuildInfo(project: Project): Observable<IBuildInfo> {
+    let pathBuilder = project.jenkinsJobLvl1 ? project.jenkinsJobLvl1 : '';
+    pathBuilder = pathBuilder.concat(project.jenkinsJobLvl2 ? '/job/' + project.jenkinsJobLvl2 : '');
+    pathBuilder = pathBuilder.concat(project.jenkinsJobLvl3 ? '/job/' + project.jenkinsJobLvl3 : '');
+
+
+    let port = 0;
+
+    switch (project.jenkinsProgram) {
+      case 'csp':
+        port = 3200;
+        break;
+      case 'cloud':
+        port = 3201;
+        break;
+      case 'ag':
+        port = 3202;
+        break;
+      case 'healthcarecs':
+        port = 3203;
+        break;
+      case 'insurance':
+        port = 3204;
+        break;
+
+      default:
+        break;
+    }
+
     return this._http.get<any>
-    (`http://qa-021985:3000/job/${project.jenkinsProject}/job/${project.bitBucketName}/job/${project.jenkinsBranchName}/lastBuild/api/json`)
+    (`http://dev-032450:${port}/job/${pathBuilder}/lastBuild/api/json`)
     .pipe(map(response => {
       const result = this.getResult(response);
       const author = this.getAuthor(response.changeSets);

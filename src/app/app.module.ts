@@ -7,7 +7,6 @@ import { AppComponent } from './app.component';
 import { MaterialModule } from './shared/material.module';
 import { SharedModule } from './shared/shared.module';
 import { ProjectTileComponent } from './project-tile/project-tile.component';
-import { ConfigurationService } from './services/configuration.service';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { BitbucketService } from './services/bitbucket.service';
 import { CommitService } from './services/commit.service';
@@ -31,7 +30,6 @@ import { DurationPipe } from './pipes/duration.pipe';
     HttpClientModule
   ],
   providers: [
-    ConfigurationService,
     BitbucketService,
     CommitService,
     JenkinsService],

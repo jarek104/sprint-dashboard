@@ -9,7 +9,7 @@
   <div class="content-container" fxFlex="1 0 auto">
     <div class="tile__content" >
       <div>Build #{{buildInfo.buildNumber}} - {{buildInfo.duration | convertToTime}}</div>
-      <div>Branch: {{project.jenkinsBranchDisplayName}}</div>
+      <div>Branch: {{project.jenkinsJobLvl3}}</div>
     </div>
     <div class="tile__content commit-container"
           *ngIf="buildInfo.commitAuthor != ''; else startedManually"
